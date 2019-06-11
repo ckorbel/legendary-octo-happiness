@@ -10,6 +10,8 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import Navbar from "./src/Layout/Navbar";
 import TodoPage from "./src/Layout/TodoPage";
+import CardsPage from "./src/Layout/CardsPage";
+import Header from "./src/Layout/Header";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -17,8 +19,9 @@ export default class App extends Component<Props> {
     const { footer, mainContentContainer } = styles;
     return (
       <View style={styles.container}>
+        <Header />
         <View style={mainContentContainer}>
-          <TodoPage />
+          <CardsPage />
         </View>
         <View style={footer}>
           <Navbar />
@@ -33,11 +36,11 @@ const styles = StyleSheet.create({
     flex: 1
   },
   mainContentContainer: {
-    height: 715,
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginTop: 80
+    height: 630
+    // flex: 1,
+    // justifyContent: "flex-start",
+    // alignItems: "center",
+    // marginTop: 80
   },
   footer: {
     height: 100

@@ -9,6 +9,7 @@ class TodoPage extends Component {
       todos: ["This is a an example todo"],
       text: ""
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleAddTodo = () => {
@@ -20,10 +21,7 @@ class TodoPage extends Component {
   };
 
   handleDelete = () => {
-    // const newArr = [...this.state.todos];
-    // newArr.splice(index, 1);
-    // this.setState({ todos: newArr });
-    console.log("fired");
+    console.log("fired", index);
   };
 
   render() {
@@ -42,14 +40,12 @@ class TodoPage extends Component {
         />
         <Button title="Add to List" onPress={this.handleAddTodo} />
         {todos.map((todo, index) => (
-          <TodoItem title={todo} key={index} />
+          <TodoItem title={todo} key={index} handleDelete={this.handleDelete} />
         ))}
       </View>
     );
   }
 }
-
-export default TodoPage;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -62,3 +58,5 @@ const styles = StyleSheet.create({
     backgroundColor: "blue"
   }
 });
+
+export default TodoPage;

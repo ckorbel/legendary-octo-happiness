@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import PropTypes from "prop-types";
 
 const TodoItem = ({ title }) => {
   const { todoContainer, leftContainer, rightContainer } = styles;
@@ -15,7 +16,10 @@ const TodoItem = ({ title }) => {
   );
 };
 
-export default TodoItem;
+TodoItem.propTypes = {
+  title: PropTypes.string,
+  hanldeDelete: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   todoContainer: {
@@ -41,3 +45,5 @@ const styles = StyleSheet.create({
   },
   button: {}
 });
+
+export default TodoItem;
