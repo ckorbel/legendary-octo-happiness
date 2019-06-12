@@ -19,7 +19,7 @@ export default class App extends Component<Props> {
     const { footer, mainContentContainer } = styles;
     return (
       <View style={styles.container}>
-        <Header />
+        <Header headerText="Organization App" />
         <View style={mainContentContainer}>
           <CardsPage />
         </View>

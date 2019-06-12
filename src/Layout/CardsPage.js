@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, ScrollView } from "react-native";
 import CardDetail from "../components/Cards/CardDetail";
 import axios from "axios";
 
@@ -26,7 +26,7 @@ class CardsPage extends Component {
   };
 
   render() {
-    return <View>{this.renderCards()}</View>;
+    return <ScrollView>{this.renderCards()}</ScrollView>;
   }
 }
 
