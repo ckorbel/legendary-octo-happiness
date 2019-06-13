@@ -11,6 +11,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import Navbar from "./src/Layout/Navbar";
 import TodoPage from "./src/Layout/TodoPage";
 import CardsPage from "./src/Layout/CardsPage";
+import LoginForm from "./src/Layout/LoginForm";
 import Header from "./src/Layout/Header";
 
 type Props = {};
@@ -21,7 +22,7 @@ export default class App extends Component<Props> {
       <View style={styles.container}>
         <Header headerText="Organization App" />
         <View style={mainContentContainer}>
-          <CardsPage />
+          <LoginForm />
         </View>
         <View style={footer}>
           <Navbar />

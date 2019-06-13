@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, ScrollView } from "react-native";
-import CardDetail from "../components/Cards/CardDetail";
+import CardDetail from "../components/common/CardDetail";
 import axios from "axios";
 
 class CardsPage extends Component {

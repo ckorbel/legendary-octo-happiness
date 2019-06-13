@@ -5,7 +5,7 @@ const Card = props => {
   return <View style={styles.containerStyle}>{props.children}</View>;
 };
 
-const styles = {
+const styles = StyleSheet.create({
   containerStyle: {
     borderWidth: 1,
     borderRadius: 2,
@@ -21,6 +21,6 @@ const styles = {
     marginTop: 10,
     alignSelf: "stretch"
   }
-};
+});
 
 export default Card;

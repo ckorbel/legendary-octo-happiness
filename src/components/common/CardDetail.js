@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, Linking } from "react-native";
 import Card from "./Card";
 import CardSection from "./CardSection";
+import Button from "./Button";
 
 const CardDetail = ({ card }) => {
-  const { title, artist, thumbnail_image, image } = card;
+  const { title, artist, thumbnail_image, image, url } = card;
   const {
     headerContentStyle,
     thumbNailStyle,
@@ -16,7 +17,7 @@ const CardDetail = ({ card }) => {
     <Card>
       <CardSection>
         <View style={imageContainer}>
-          <Image style={thumbNailStyle} source={{ uri: thumbnail_image }} />
+          <Image style={thumbNailStyle} />
         </View>
         <View style={headerContentStyle}>
           <Text style={headerTextStyle}>{title}</Text>
@@ -24,7 +25,10 @@ const CardDetail = ({ card }) => {
         </View>
       </CardSection>
       <CardSection>
-        <Image source={{ uri: image }} style={artWorkImage} />
+        <Image style={artWorkImage} />
+      </CardSection>
+      <CardSection>
+        <Button onPress={() => Linking.openURL(url)}>Buy Now</Button>
       </CardSection>
     </Card>
   );
@@ -40,7 +44,8 @@ const styles = StyleSheet.create({
   },
   thumbNailStyle: {
     width: 50,
-    height: 50
+    height: 50,
+    backgroundColor: "grey"
   },
   imageContainer: {
     justifyContent: "center",
@@ -51,7 +56,8 @@ const styles = StyleSheet.create({
   artWorkImage: {
     height: 300,
     flex: 1,
-    width: null
+    width: null,
+    backgroundColor: "red"
   }
 });
 
