@@ -4,31 +4,61 @@ import Card from "../components/common/Card";
 import CardSection from "../components/common/CardSection";
 import Button from "../components/common/Button";
 import FieldInput from "../components/common/FieldInput";
+import UserFactory from "../api/user";
+import { connect } from "react-redux";
+import { setAlert } from "../actions/alerts";
 
 class LoginForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      text: ""
+      name: "",
+      email: "",
+      password: ""
     };
+    this.handleUserLogin = this.handleUserLogin.bind(this);
+  }
+
+  handleUserLogin() {
+    UserFactory.registerNewUser(this.state)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+        props.setAlert("This is an alert", "danger");
+      });
   }
 
   render() {
-    const { textInput } = styles;
-    const { text } = this.state;
+    const { email, password, name } = this.state;
     return (
       <Card>
         <View>
           <FieldInput
-            value={text}
-            onChangeText={text => this.setState({ text })}
-            label="email"
+            value={name}
+            onChangeText={name => this.setState({ name })}
+            label="Username"
+            placeholder="John Doe"
+          />
+          <FieldInput
+            value={email}
+            onChangeText={email => this.setState({ email })}
+            label="Email"
+            placeholder="user@gmail.com"
+          />
+          <FieldInput
+            value={password}
+            onChangeText={password => this.setState({ password })}
+            label="Password"
+            placeholder="password"
+            secureTextEntry={true}
           />
         </View>
         <CardSection />
 
         <CardSection>
-          <Button>Login</Button>
+          <Button onPress={this.handleUserLogin}>Login</Button>
         </CardSection>
       </Card>
     );
@@ -39,4 +69,7 @@ const styles = StyleSheet.create({
   textInput: {}
 });
 
-export default LoginForm;
+export default connect(
+  null,
+  { setAlert }
+)(LoginForm);

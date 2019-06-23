@@ -1,12 +1,25 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-const FieldInput = ({ label, value, onChangeText }) => {
+const FieldInput = ({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  secureTextEntry
+}) => {
   const { containerStyle, inputStyle, labelStyle } = styles;
   return (
     <View style={containerStyle}>
       <Text style={labelStyle}>{label}</Text>
-      <TextInput style={inputStyle} value={value} onChangeText={onChangeText} />
+      <TextInput
+        secureTextEntry={secureTextEntry}
+        placeholder={placeholder}
+        style={inputStyle}
+        value={value}
+        onChangeText={onChangeText}
+        autoCorrect={false}
+      />
     </View>
   );
 };
@@ -27,7 +40,6 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     height: 40,
-    flex: 1,
     flexDirection: "row",
     alignItems: "center"
   }
