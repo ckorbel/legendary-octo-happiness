@@ -16,7 +16,7 @@ import Navbar from "./Layout/Navbar";
 import TodoPage from "./Layout/TodoPage";
 import CardsPage from "./Layout/CardsPage";
 import LoginForm from "./Layout/LoginForm";
-import Library from "./Layout/Library";
+import Library from "./Layout/Library/Library";
 import Header from "./Layout/Header";
 
 export default class App extends Component {
@@ -45,10 +45,6 @@ const styles = StyleSheet.create({
   },
   mainContentContainer: {
     height: 630
-    // flex: 1,
-    // justifyContent: "flex-start",
-    // alignItems: "center",
-    // marginTop: 80
   },
   footer: {
     height: 100

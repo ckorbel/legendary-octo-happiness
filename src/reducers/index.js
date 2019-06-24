@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
-import alert from "./alerts";
 import library from "./library";
+import selectLibrary from "./selection";
 
 export default combineReducers({
-  libraries: library
+  libraries: library,
+  selectedLibraryId: selectLibrary
 });

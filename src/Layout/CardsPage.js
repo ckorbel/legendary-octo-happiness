@@ -15,7 +15,6 @@ class CardsPage extends Component {
     axios
       .get("https://rallycoding.herokuapp.com/api/music_albums")
       .then(res => {
-        console.log(res.data);
         this.setState({ cards: res.data });
       });
   }
