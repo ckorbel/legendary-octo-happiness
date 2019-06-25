@@ -15,7 +15,7 @@ import store from "./store";
 import Navbar from "./Layout/Navbar";
 import TodoPage from "./Layout/TodoPage";
 import CardsPage from "./Layout/CardsPage";
-import LoginForm from "./Layout/LoginForm";
+import LoginForm from "./Layout/Login/LoginForm";
 import Library from "./Layout/Library/Library";
 import Header from "./Layout/Header";
 
@@ -27,8 +27,8 @@ export default class App extends Component {
         <View style={styles.container}>
           <Header headerText="Organization App" />
           <View style={mainContentContainer}>
-            {/* <LoginForm /> */}
-            <Library />
+            <LoginForm />
+            {/* <Library /> */}
           </View>
           <View style={footer}>
             <Navbar />

@@ -8,7 +8,7 @@ import {
   LayoutAnimation
 } from "react-native";
 import CardSection from "../../components/common/CardSection";
-import * as actions from "../../actions/selection";
+import { selectLibrary } from "../../actions/selection";
 
 class ListItem extends Component {
   componentDidUpdate() {
@@ -58,5 +58,5 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  actions
+  { selectLibrary }
 )(ListItem);

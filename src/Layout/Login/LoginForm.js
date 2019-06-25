@@ -1,25 +1,26 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { View, StyleSheet } from "react-native";
-import Card from "../components/common/Card";
-import CardSection from "../components/common/CardSection";
-import Button from "../components/common/Button";
-import FieldInput from "../components/common/FieldInput";
-import UserFactory from "../api/user";
+import Card from "../../components/common/Card";
+import CardSection from "../../components/common/CardSection";
+import Button from "../../components/common/Button";
+import FieldInput from "../../components/common/FieldInput";
+import UserFactory from "../../api/user";
 import { connect } from "react-redux";
-import { setAlert } from "../actions/alerts";
+import { setAlert } from "../../actions/alerts";
+import { emailChange } from "../../actions/auth";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       email: "",
-      password: ""
+      password: "",
+      errors: {}
     };
-    this.handleUserLogin = this.handleUserLogin.bind(this);
   }
 
-  handleUserLogin() {
+  handleUserLogin = () => {
     UserFactory.registerNewUser(this.state)
       .then(res => {
         console.log(res);
@@ -28,19 +29,14 @@ class LoginForm extends Component {
         console.log(err);
         props.setAlert("This is an alert", "danger");
       });
-  }
+  };
 
   render() {
-    const { email, password, name } = this.state;
+    const { email, password } = this.state;
+    console.log(this.props.email);
     return (
       <Card>
         <View>
-          <FieldInput
-            value={name}
-            onChangeText={name => this.setState({ name })}
-            label="Username"
-            placeholder="John Doe"
-          />
           <FieldInput
             value={email}
             onChangeText={email => this.setState({ email })}
@@ -55,7 +51,6 @@ class LoginForm extends Component {
             secureTextEntry={true}
           />
         </View>
-        <CardSection />
 
         <CardSection>
           <Button onPress={this.handleUserLogin}>Login</Button>
@@ -69,7 +64,13 @@ const styles = StyleSheet.create({
   textInput: {}
 });
 
+const mapStateToProps = state => {
+  return {
+    email: state.auth
+  };
+};
+
 export default connect(
-  null,
-  { setAlert }
+  mapStateToProps,
+  { emailChange }
 )(LoginForm);
