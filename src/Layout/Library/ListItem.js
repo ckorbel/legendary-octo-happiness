@@ -1,21 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  LayoutAnimation
+} from "react-native";
 import CardSection from "../../components/common/CardSection";
 import * as actions from "../../actions/selection";
 
 class ListItem extends Component {
+  componentDidUpdate() {
+    LayoutAnimation.spring();
+  }
+
   renderDescription = () => {
-    const { id, description } = this.props.library.item;
-    console.log(id, this.props.selectedLibraryId);
-    if (id === this.props.selectedLibraryId) {
-      return <Text>{description}</Text>;
+    const { expanded, library } = this.props;
+    if (expanded) {
+      return (
+        <CardSection>
+          <Text stype={{ flex: 1 }}>{library.description}</Text>
+        </CardSection>
+      );
     }
   };
 
   render() {
     const { titleStyle } = styles;
-    const { id, text } = this.props.library.item;
+    const { id, text } = this.props.library;
     return (
       <TouchableWithoutFeedback onPress={() => this.props.selectLibrary(id)}>
         <View>
@@ -36,8 +49,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  return { selectedLibraryId: state.selectedLibraryId };
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.selectedLibraryId === ownProps.library.id;
+  return {
+    expanded
+  };
 };
 
 export default connect(
