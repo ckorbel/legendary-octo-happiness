@@ -15,6 +15,8 @@ class LoginForm extends Component {
     this.state = {
       email: "",
       password: "",
+      firstName: "",
+      lastName: "",
       errors: {}
     };
   }
@@ -31,7 +33,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, lastName, firstName } = this.state;
     return (
       <Card>
         <View>
@@ -47,6 +49,18 @@ class LoginForm extends Component {
             label="Password"
             placeholder="password"
             secureTextEntry={true}
+          />
+          <FieldInput
+            value={firstName}
+            onChangeText={firstName => this.setState({ firstName })}
+            label="FirstName"
+            placeholder="First Name"
+          />
+          <FieldInput
+            value={lastName}
+            onChangeText={lastName => this.setState({ lastName })}
+            label="LastName"
+            placeholder="Last Name"
           />
         </View>
 

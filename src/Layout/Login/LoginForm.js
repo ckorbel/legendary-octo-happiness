@@ -8,7 +8,7 @@ import FieldInput from "../../components/common/FieldInput";
 import UserFactory from "../../api/user";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alerts";
-import { emailChange } from "../../actions/auth";
+import { emailChange, registerUser } from "../../actions/auth";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -16,24 +16,18 @@ class LoginForm extends Component {
     this.state = {
       email: "",
       password: "",
+      firstName: "",
+      lastName: "",
       errors: {}
     };
   }
 
   handleUserLogin = () => {
-    UserFactory.registerNewUser(this.state)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-        props.setAlert("This is an alert", "danger");
-      });
+    this.props.registerUser(this.state);
   };
 
   render() {
-    const { email, password } = this.state;
-    console.log(this.props.email);
+    const { email, password, firstName, lastName } = this.state;
     return (
       <Card>
         <View>
@@ -50,6 +44,18 @@ class LoginForm extends Component {
             placeholder="password"
             secureTextEntry={true}
           />
+          <FieldInput
+            value={firstName}
+            onChangeText={firstName => this.setState({ firstName })}
+            label="First Name"
+            placeholder="First Name"
+          />
+          <FieldInput
+            value={lastName}
+            onChangeText={lastName => this.setState({ lastName })}
+            label="Last Name"
+            placeholder="Last Name"
+          />
         </View>
 
         <CardSection>
@@ -64,6 +70,10 @@ const styles = StyleSheet.create({
   textInput: {}
 });
 
+LoginForm.propType = {
+  registerUser: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => {
   return {
     email: state.auth
@@ -72,5 +82,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { emailChange }
+  { registerUser }
 )(LoginForm);
