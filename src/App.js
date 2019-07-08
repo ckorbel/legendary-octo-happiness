@@ -18,17 +18,19 @@ import CardsPage from "./Layout/CardsPage";
 import LoginForm from "./Layout/Login/LoginForm";
 import Library from "./Layout/Library/Library";
 import Header from "./Layout/Header";
+import Router from "./Router";
 
 export default class App extends Component {
   render() {
     const { footer, mainContentContainer } = styles;
     return (
       <Provider store={store}>
+        <Router />
         <View style={styles.container}>
           <Header headerText="Organization App" />
           <View style={mainContentContainer}>
             <LoginForm />
-            {/* <Library /> */}
+            <Library />
           </View>
           <View style={footer}>
             <Navbar />

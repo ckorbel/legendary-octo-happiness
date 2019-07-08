@@ -13,7 +13,8 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case REGISTER_SUCCESS:
-      UserFactory.setToken(payload.token);
+      const { token } = payload || {};
+      UserFactory.setToken(token);
       return {
         ...state,
         ...payload,

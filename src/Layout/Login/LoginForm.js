@@ -23,7 +23,14 @@ class LoginForm extends Component {
   }
 
   handleUserLogin = () => {
-    this.props.registerUser(this.state);
+    const { email, password, firstName, lastName } = this.state;
+    const userData = {
+      email,
+      password,
+      firstName,
+      lastName
+    };
+    this.props.registerUser(userData);
   };
 
   render() {
